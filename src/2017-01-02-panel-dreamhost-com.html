@@ -1,0 +1,104 @@
+<!-- 原地址：https://panel.dreamhost.com/ -->
+<!--
+note:
+0. 相邻兄弟选择器 +，兄弟选择 ~ 要求第二个元素在第一个元素后面。
+1. remove placeholder txt when input focus:
+
+  1.1 CSS ::-webkit-input-placeholder
+  1.2 JS onfocus clear placeholder; onblur reset placeholder。
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>login panel</title>
+    <style media="screen">
+      .login-panel{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 375px;
+        height: 312px;
+        box-sizing: content-box;
+        padding: 40px;
+        color: #3675b4;
+        border-radius: 3px;
+        background-image: linear-gradient(130deg, #fff 0%, #E6E6E6 100%);
+        box-shadow: 0px 4px 10px 0px rgba(8, 13, 18, 0.3);
+        /*layout*/
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .login-logo{
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+      }
+
+      .input-wrapper{
+        position: relative;
+        width: 100%;
+        margin-top: 12px;
+      }
+
+      .input-wrapper label{
+        position: absolute;
+        left: 9px;
+        top: 0px;
+        opacity: 0;
+        font-size: 10px;
+        transition: all .2s;
+      }
+
+      .input-wrapper input{
+        width: 100%;
+        border-radius: 2px;
+        background-color: #fff;
+        border: 1px solid #d1d1d1;
+        box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.05);
+        color: #000;
+        font-size: 18px;
+        padding: 9px;
+        box-sizing: border-box;
+      }
+
+      .input-wrapper input:focus::-webkit-input-placeholder{
+        color: transparent;
+      }
+
+      .input-wrapper input:focus ~ label{
+        top: 4px;
+        opacity: 1;
+      }
+
+      .confirm-wrapper{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-panel">
+      <img src="https://securendn.a.ssl.fastly.net/newpanel/images/dh_icon-a-2014.svg" alt="" class="login-logo">
+      <p>Sign in to your account</p>
+      <div class="input-wrapper">
+        <input type="email" id="email" value="" placeholder="Email">
+        <label for="email">EMAIL</label>
+      </div>
+      <div class="input-wrapper">
+        <input type="password" id="password" value="" placeholder="Password">
+        <label for="password">PASSWORD</label>
+      </div>
+      <div class="confirm-wrapper">
+        <span class="reset-pwd">Reset password</span>
+        <button class="btn-sign-in">Sign in</button>
+      </div>
+    </div>
+  </body>
+</html>

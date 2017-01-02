@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>nav</title>
+    <style media="screen">
+      body, div, dl, dt, dd, ul, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, blockquote{
+        margin: 0;
+        padding: 0;
+      }
+      .global-nav{
+        height: 28px;
+        background: #545652;
+        color: #d5d5d5;
+        font-size: 12px;
+        font-family: Helvetica, Arial, sans-serif;
+        min-width: 950px;
+      }
+
+      .nav-list{
+        list-style: none;
+        height: 28px;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        padding-right: 12px;
+      }
+
+      .nav-list .nav-item{
+        display: inline-block;
+        padding: 0 12px;
+        height: 28px;
+        line-height: 28px;
+        cursor: pointer;
+      }
+
+      .nav-list .nav-item:hover{
+        color: #fff;
+      }
+
+      .nav-list .nav-item.sp{
+        flex: 1;
+      }
+
+      .nav-list .nav-item.download{
+        position: relative;
+      }
+
+      .nav-list .nav-item.download:hover .pop-download-detail{
+        display: flex;
+      }
+
+      .nav-list .nav-item.login{
+        margin-right: 4px;
+      }
+
+      /*pop*/
+      .pop-download-detail{
+        box-sizing: content-box;
+        width: 210px;
+        height: 457px;
+        padding: 10px 20px 30px;
+        color: #111;
+        font-size: 15px;
+        line-height: 1.62;
+        font-weight: bold;
+        border: 1px solid #e6e6e6;
+        border-top: none;
+        background-color: #fff;
+        position: absolute;
+        top: 28px;
+        left: 0;
+        /*这里的 50% 相对于父元素，即 <li>*/
+        margin-left: calc(-125px + 50%);
+        /*layout*/
+        display: none;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        cursor: default;
+      }
+
+      .pop-download-detail .db-logo{
+        width: 100px;
+        height: 100px;
+        margin-top: 40px;
+      }
+
+      .pop-download-detail .download-qrcode{
+        width: 160px;
+        height: 160px;
+      }
+
+      .pop-download-detail .title{
+        font-size: 24px;
+        font-weight: 400;
+        margin: 0;
+      }
+
+      .pop-download-detail .slogan{
+        font-size: 13px;
+        letter-spacing: 3px;
+        font-weight: 400;
+        margin: 0;
+        margin-top: -20px;
+      }
+
+      .pop-download-detail a{
+        color: #37a;
+        font-size: 12px;
+        font-weight: normal;
+        text-decoration: none;
+        -webkit-font-smoothing: antialiased;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="global-nav">
+      <ul class="nav-list">
+        <li class="nav-item">豆瓣</li>
+        <li class="nav-item">读书</li>
+        <li class="nav-item">电影</li>
+        <li class="nav-item">音乐</li>
+        <li class="nav-item">同城</li>
+        <li class="nav-item">小组</li>
+        <li class="nav-item">阅读</li>
+        <li class="nav-item">FM</li>
+        <li class="nav-item">东西</li>
+        <li class="nav-item">市集</li>
+        <li class="nav-item">更多</li>
+        <li class="nav-item sp"></li>
+        <li class="nav-item download">
+          <span>下载豆瓣客户端</span>
+          <div class="pop-download-detail">
+            <img src="https://img3.doubanio.com/f/shire/12356a377c5190a72a849e5b5c9034dd538b439e/pics/nav/nav_doubanapp_6.png" alt="" class="db-logo">
+            <p class="title">豆瓣</p>
+            <p class="slogan">我们的精神角落</p>
+            <img src="https://img3.doubanio.com/f/shire/af392ad86cb48ed904ba64d8220b1a6fb1b4f97b/pics/nav/nav_doubanapp_6_qrcode@2x.png" alt="" class="download-qrcode">
+            <div class="download-link">
+              <a href="#">iPhone</a>
+              <span>·</span>
+              <a href="#">Android</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item login">登录</li>
+        <li class="nav-item">注册</li>
+      </ul>
+    </div>
+  </body>
+</html>
