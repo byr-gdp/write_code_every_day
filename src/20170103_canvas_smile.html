@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Smile</title>
+    <style media="screen">
+      canvas{
+        border: 1px solid #efefef;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 2px 10px #333;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="300" height="300"></canvas>
+    <script type="text/javascript">
+      var canvas = document.querySelector('#canvas');
+      var ctx = canvas.getContext('2d');
+
+      ctx.beginPath();
+      ctx.arc(150, 150, 100, 0, Math.PI * 2, false);
+      ctx.moveTo(210, 150);
+      ctx.arc(150, 150, 60, 0, Math.PI, false);
+      ctx.moveTo(175, 120);
+      ctx.arc(175, 120, 10, 0, Math.PI * 2, false);
+      ctx.moveTo(125, 120);
+      ctx.arc(125, 120, 10, 0, Math.PI * 2, false);
+      ctx.stroke();
+
+    </script>
+  </body>
+</html>
