@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>color_wheel</title>
+    <style media="screen">
+      canvas{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        /*transform: translate(-50%, -50%);*/
+        margin-left: -150px;
+        margin-top: -150px;
+        transform-origin: 50% 50%;
+      }
+
+      canvas:hover{
+        animation: rotate infinite .6s ease-in-out alternate;
+      }
+
+      @keyframes rotate{
+        from{ transform: rotate(0); }
+        to{ transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="300" height="300"></canvas>
+    <script type="text/javascript">
+      var canvas = document.querySelector('#canvas');
+      var ctx = canvas.getContext('2d');
+
+      // 先画外圆，再画内圆
+      // 外部圆外半径
+      var outColors = ['#ea621f', '#e32322', '#c4037d', '#6d398b', '#444e99', '#2a71b0', '#0696bb',
+       '#008e5b', '#8cbb26', '#f4e500', '#fdc60b', '#f18e1c'];
+      for(var i = 0; i < outColors.length; i++){
+        ctx.beginPath();
+        ctx.arc(150, 150, 150, ((Math.PI / 180) * (-15 + i * 30)), ((Math.PI / 180) * (15 + i * 30)), false);
+        ctx.lineTo(150, 150);
+        ctx.fillStyle = outColors[i];
+        ctx.fill();
+        ctx.strokeStyle = outColors[i];
+        ctx.stroke();
+      }
+
+
+      ctx.beginPath();
+      ctx.arc(150, 150,100, 0, Math.PI * 2, false);
+      ctx.fillStyle = 'rgba(255, 255, 255, 1)';
+      ctx.fill();
+
+      // 坐标均相对于圆心 x+150, y+150
+      // 顺时针外层坐标
+      // (0, -100) (85, -50) (85, 50) (0, 100) (-85, 50) (-85, -50)
+      // (150, 50) (235, 100) (235, 200) (150, 250) (65, 200) (65, 100)
+      // 顺时针内层坐标
+      // (43, -25) (0, 50) (-43, -25)
+      // (193, 125) (150, 200) (107, 125)
+
+      // 中间三角形
+      ctx.beginPath();
+      ctx.moveTo(150, 50);
+      ctx.lineTo(235, 100);
+      ctx.lineTo(235, 200);
+      ctx.fillStyle = '#f18e1c';
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(150, 50);
+      ctx.lineTo(65, 100);
+      ctx.lineTo(65, 200);
+      ctx.fillStyle = '#008e5b';
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(65, 200);
+      ctx.lineTo(150, 250);
+      ctx.lineTo(235, 200);
+      ctx.fillStyle = '#6d398b';
+      ctx.fill();
+
+      // 内部等边三角形
+      ctx.beginPath();
+      ctx.moveTo(150, 50);
+      ctx.lineTo(193, 125);
+      ctx.lineTo(150, 150);
+      ctx.lineTo(107, 125);
+      ctx.fillStyle = '#f4e500';
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(193, 125);
+      ctx.lineTo(235, 200);
+      ctx.lineTo(150, 200);
+      ctx.lineTo(150, 150);
+      ctx.fillStyle = '#e32322';
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(107, 125);
+      ctx.lineTo(65, 200);
+      ctx.lineTo(150, 200);
+      ctx.lineTo(150, 150);
+      ctx.fillStyle = '#2a71b0';
+      ctx.fill();
+
+    </script>
+  </body>
+</html>

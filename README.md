@@ -8,4 +8,4 @@
   - input 在 focus 状态 label 落下效果。
 - 2017-01-03：[canvas smile](http://if-true.com/write_css_every_day/src/201701013_canvas_smile.html)。
   - canvas arc 基本用法。
-
+- 2017-01-04: [canvas color wheel](http://if-true.com/write_css_every_day/src/20170104_canvas_color_wheel.html)。
