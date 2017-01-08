@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>simplePagination</title>
+    <style media="screen">
+      html, body{
+        width: 100%;
+        height: 100%;
+      }
+      body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      ul{
+        list-style: none;
+        overflow: hidden;
+      }
+      li{
+        float: left;
+        padding: 0 5px;
+        margin: 2px;
+        color: #cc77aa;
+        background-color: transparent;
+        cursor: pointer;
+      }
+      .cur{
+        background-color: #83BF73;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="page"></div>
+    <script src="./simplePagination.js"></script>
+    <script src="./render.js"></script>
+    <script type="text/javascript">
+      var page = document.querySelector('#page');
+
+      var FIRST_PAGE = 1;
+      var TOTAL_PAGE = 20;
+
+      var curPage = 1;
+      var ret = simplePagination(TOTAL_PAGE, curPage);
+      page.innerHTML = render(ret, curPage);
+
+      page.addEventListener('click', function(e){
+        if(typeof e.target.dataset.page !== 'undefined'){
+          ret = simplePagination(TOTAL_PAGE, parseInt(e.target.dataset.page));
+          page.innerHTML = render(ret, parseInt(e.target.dataset.page));
+        }
+      });
+    </script>
+  </body>
+</html>
