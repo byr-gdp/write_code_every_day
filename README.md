@@ -17,3 +17,6 @@
   - Flex 布局。
   - 使用 CSS Counters 来显示排名序号。
   - 简单正则。
+- 2017-01-07：[CSS 计数器嵌套有序列表](http://if-true.com/write_css_every_day/src/20170107_css_counters_order_list.html)。
+    - counter 接受一个参数，counters 接受多个参数，支持嵌套。
+    - list-style-type 需要置为 none。
