@@ -13,3 +13,7 @@
 - 2017-01-05：[简单分页逻辑](http://if-true.com/write_css_every_day/src/20170105_simple_pagination/index.html)。
   - simplePagination 函数，根据总页数和当前页，返回分页信息。
   - 根据分页信息，在页面渲染。
+- 2017-01-06：[微信运动排名](http://if-true.com/write_css_every_day/src/20170106_wechat_sport_rank/index.html)。
+  - Flex 布局。
+  - 使用 CSS Counters 来显示排名序号。
+  - 简单正则。
