@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- 未加 viewport 前，本机测试 document.body.clientWidth 980，加上之后和移动端CSS像素一致 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>rem layout</title>
+    <style media="screen">
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      html{
+        /*chrome min font-size 12px*/
+        font-size: 20px;
+      }
+      /*iPhone5 320 * 568 dpr 2.0*/
+      @media (min-device-width: 320px) and (max-device-width: 375px){
+        html{
+          font-size: 86px;
+        }
+      }
+      /*iPhone6 375 * 667 dpr 2.0*/
+      @media (min-device-width: 375px) and (max-device-width: 667px){
+        html{
+          font-size: 100px;
+        }
+      }
+      /*iPhone6 Plus 414 * 736 dpr 3.0*/
+      @media (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio : 3){
+        html{
+          font-size: 110px;
+        }
+      }
+
+      .con{
+        width: 1rem;
+        height: 1rem;
+        border: .01rem solid #999;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="con"></div>
+  </body>
+</html>
