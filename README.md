@@ -1,22 +1,30 @@
 # write_css_every_day
 
 - 2017-01-01：[豆瓣顶部导航栏](http://if-true.com/write_css_every_day/src/20170101_douban_nav.html)。
-  - Flex 布局。
-  - 下载客户端 pure css 实现。
+  - Flex 布局
+  - 下载客户端 pure css 实现
 - 2017-01-02：[https://panel.dreamhost.com/ 登录表单](http://if-true.com/write_css_every_day/src/20170102_dreamhost_com_login.html)。
-  - input 在 focus 状态清除 placeholder 内容（CSS、JS 均可）。
-  - input 在 focus 状态 label 落下效果。
+  - input 在 focus 状态清除 placeholder 内容（CSS、JS 均可）
+  - input 在 focus 状态 label 落下效果
 - 2017-01-03：[canvas smile](http://if-true.com/write_css_every_day/src/201701013_canvas_smile.html)。
-  - canvas arc 基本用法。
+  - canvas arc 基本用法
 - 2017-01-04：[canvas color wheel](http://if-true.com/write_css_every_day/src/20170104_canvas_color_wheel.html)。
-  - 用 canvas 画扇形。
+  - 用 canvas 画扇形
 - 2017-01-05：[简单分页逻辑](http://if-true.com/write_css_every_day/src/20170105_simple_pagination/index.html)。
-  - simplePagination 函数，根据总页数和当前页，返回分页信息。
-  - 根据分页信息，在页面渲染。
+  - simplePagination 函数，根据总页数和当前页，返回分页信息
+  - 根据分页信息，在页面渲染
 - 2017-01-06：[微信运动排名](http://if-true.com/write_css_every_day/src/20170106_wechat_sport_rank/index.html)。
-  - Flex 布局。
-  - 使用 CSS Counters 来显示排名序号。
-  - 简单正则。
+  - Flex 布局
+  - 使用 CSS Counters 来显示排名序号
+  - 简单正则
 - 2017-01-07：[CSS 计数器嵌套有序列表](http://if-true.com/write_css_every_day/src/20170107_css_counters_order_list.html)。
-    - counter 接受一个参数，counters 接受多个参数，支持嵌套。
-    - list-style-type 需要置为 none。
+  - counter 接受一个参数，counters 接受多个参数，支持嵌套
+  - list-style-type 需要置为 none
+- 2017-01-08：[touch 事件]（未完成）
+- 2017-01-15: [rem 配合 media query 移动端适配]（未完成）
+- 2017-02-10：[多行文本溢出显示省略号]
+  - -webkit-line-clamp
+  - -webkit-box-orient: vertical
+  - display: flex
+  - text-overflow: ellipsis
+  - overflow: hidden
