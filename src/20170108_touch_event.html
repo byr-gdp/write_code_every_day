@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>touch event</title>
+    <style media="screen">
+      canvas{
+        border: 1px solid #e9e9e9;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="300" height="300"></canvas>
+    <ul id="log"></ul>
+    <script type="text/javascript">
+    var canvas = document.querySelector('#canvas');
+    var log = document.querySelector('#log');
+
+    var ctx = canvas.getContext('2d');
+
+    var handleStart = function(e){
+      console.log(e);
+      var li = document.createElement('li');
+      li.innerText = 'touch start';
+      // var info = `<li>touch start</li>`;
+      log.appendChild(li);
+    };
+    var handleMove = function(e){
+      console.log(e);
+      var li = document.createElement('li');
+      li.innerText = 'touch move';
+      // var info = `<li>touch move</li>`;
+      log.appendChild(li);
+    };
+    var handleEnd = function(e){
+      console.log(e);
+      var li = document.createElement('li');
+      li.innerText = 'touch end';
+      // var info = `<li>touch end</li>`;
+      log.appendChild(li);
+    };
+
+    canvas.addEventListener('touchstart', handleStart, false);
+    canvas.addEventListener('touchmove', handleMove, false);
+    canvas.addEventListener('touchend', handleEnd, false);
+
+
+    </script>
+  </body>
+</html>
