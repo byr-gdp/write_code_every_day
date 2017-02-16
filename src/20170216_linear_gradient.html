@@ -1,0 +1,40 @@
+/**
+ * 模拟知乎新版 feed 流中问题回答梗概渐变效果
+ */
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>linear gradient</title>
+    <style media="screen">
+      .box{
+        width: 200px;
+        height: 200px;
+        border: 1px solid #efefef;
+
+        /*linear-gradient 第一个参数是 角度或者方向（默认从底向上），其后的参数以“颜色 百分比”形式出现*/
+        background: linear-gradient(to top, rgb(238, 68, 51), rgb(60, 155, 245));
+      }
+
+      .article{
+        position: relative;
+        width: 200px;
+      }
+
+      .mask{
+        background: linear-gradient(to bottom, hsla(0,0%,100%,0), rgb(255, 255, 255));
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <div class="article">side-or-corner 描述渐变线的起始点位置。它包含两个关键词：第一个指出垂直位置left or right，第二个指出水平位置top or bottom。关键词的先后顺序无影响，且都是可选的。
+to top, to bottom, to left 和 to right这些值会被转换成角度0度、180度、270度和90度。其余值会被转换为一个以向顶部中央方向为起点顺时针旋转的角度。渐变线的结束点与其起点中心对称。
+      <div class="mask"></div>
+    </div>
+  </body>
+</html>

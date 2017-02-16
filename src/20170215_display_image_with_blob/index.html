@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>blob</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      // 原理详见：
+      // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Sending_and_Receiving_Binary_Data
+      // http://stackoverflow.com/questions/7650587/using-javascript-to-display-blob
+      // 另一种思路是 arraybuffer -> string -> base64、
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', './icon.jpg', true);
+      xhr.responseType = 'arraybuffer';
+      xhr.onload = function(){
+        if(xhr.readyState === 4 && xhr.status === 200){
+          var blob = new Blob([xhr.response], {type: 'image/png'});
+          var image = new Image();
+          image.src = URL.createObjectURL(blob);;
+          document.body.appendChild(image);
+        }
+      }
+      xhr.send();
+    </script>
+  </body>
+</html>

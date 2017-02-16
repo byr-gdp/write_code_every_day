@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>array buffer</title>
+  </head>
+  <body>
+    <!-- 通过 array buffer 来读取二进制数据图片数据。 -->
+    <img src="" alt="" id="image">
+    <script type="text/javascript">
+      // 原理详见：
+      // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Sending_and_Receiving_Binary_Data
+      // http://stackoverflow.com/questions/20035615/using-raw-image-data-from-ajax-request-for-data-uri
+      // 思路是 arraybuffer -> string -> base64，另一种思路是 blob，会在接下里尝试。
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', './icon.jpg', true);
+      xhr.responseType = 'arraybuffer';
+      xhr.onload = function(){
+        if(xhr.readyState === 4 && xhr.status === 200){
+          var arraybuffer = xhr.response;
+          // 将 array 转化为 base64 字符串
+          var base64 = btoa(String.fromCharCode.apply(null, new Uint8Array(xhr.response)));
+
+          document.querySelector('#image').src = `data:image/jpg;base64,${base64}`;
+        }
+      }
+      xhr.send();
+    </script>
+  </body>
+</html>
