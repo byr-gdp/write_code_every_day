@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>background-size</title>
+    <style media="screen">
+      /*background-size 表示用多少面积来展示这个背景*/
+      .bg{
+        background-image: url("./bg.png");
+        /*百分比相对于 bg 长宽，等同于 100px 100px*/
+        background-size: 100% 100%;
+        width: 100px;
+        height: 100px;
+      }
+
+      .bg-2{
+        background-image: url("./bg.png");
+        background-size: 145px 145px;
+        width: 290px;
+        height: 290px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>145 * 145</h2>
+    <img src="./bg.png" alt="">
+    <hr>
+    <h2>100 * 100</h2>
+    <div class="bg"></div>
+    <hr>
+    <h2>290 * 290</h2>
+    <div class="bg-2"></div>
+  </body>
+</html>
