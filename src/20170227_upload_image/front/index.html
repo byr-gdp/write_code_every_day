@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>upload image</title>
+    <!--
+    单个图片文件上传
+    0. 通过 input[type=file] 上传图片并获取图片基本信息 √
+    1. 上传前预览图片 √
+    2. 通过 xhr 上传图片到 server √
+    3. back-end 解析并保存图片 √
+    -->
+    <style media="screen">
+      .preview{
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="file" name="uploadFile" id="uploadFile">
+    <div class="file-info">
+      <p>name: <span class="file-name"></span></p>
+      <p>size: <span class="file-size"></span></p>
+      <p>type: <span class="file-type"></span></p>
+    </div>
+    <button id="upload">upload</button>
+    <div class="preview">
+      <span>预览图</span>
+    </div>
+    <script type="text/javascript">
+      let uploadFile = document.querySelector('#uploadFile');
+      let fileName = document.querySelector('.file-name');
+      let fileSize = document.querySelector('.file-size');
+      let fileType = document.querySelector('.file-type');
+      let upload = document.querySelector('#upload');
+      let preview = document.querySelector('.preview');
+
+      let uri = 'http://127.0.0.1:9999/';
+
+      uploadFile.addEventListener('change', function(e){
+        fileName.innerText = this.files[0].name;
+        fileSize.innerText = this.files[0].size;
+        fileType.innerText = this.files[0].type;
+
+        let img = document.createElement('img');
+        img.src = window.URL.createObjectURL(this.files[0]);
+        preview.append(img);
+      });
+
+      upload.addEventListener('click', function(e){
+        if(uploadFile.files.length === 0){
+          alert('请选择文件');
+        }else{
+          sendFile();
+        }
+      });
+
+      function sendFile(){
+        let xhr = new XMLHttpRequest();
+        let fd = new FormData();
+
+        fd.append('uploadimg', uploadFile.files[0]);
+        xhr.open('POST', uri, true);
+        xhr.onload = function(){
+          if(xhr.readyState == 4 && xhr.status == 200){
+            alert(xhr.responseText);
+          }
+        }
+        xhr.send(fd);
+      }
+
+    </script>
+  </body>
+</html>
