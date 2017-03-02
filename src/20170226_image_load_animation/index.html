@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>image load animation</title>
+    <!--
+    避免加载图片时出现自上而下逐步加载的情况
+    参考：https://www.zhihu.com/question/40757342
+     -->
+    <style media="screen">
+      img{
+        display: block;
+        margin-bottom: 10px;
+        width: 200px;
+        height: 200px;
+        background-color: #333;
+      }
+
+      .new-img{
+        background-color: #333;
+        animation: showUp .5s ease-in;
+      }
+
+      @keyframes showUp {
+        from{ opacity: 0.5; }
+        to { opacity: 1; }
+      }
+
+      .container{
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .section{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="section">
+        <h2>正常方式加载</h2>
+        <img src="https://images.unsplash.com/uploads/14135798609283698b7f3/a1364128?dpr=2&auto=compress,format&fit=crop&w=767&h=431&q=80&cs=tinysrgb&crop=">
+        <img src="https://images.unsplash.com/photo-1473216635433-38f7100ae658?dpr=2&auto=compress,format&fit=crop&w=991&h=641&q=80&cs=tinysrgb&crop=" alt="">
+      </div>
+      <div class="section">
+        <h2>图片加载完毕再显示</h2>
+        <img data-src="https://images.unsplash.com/uploads/14135798609283698b7f3/a1364128?dpr=2&auto=compress,format&fit=crop&w=767&h=431&q=80&cs=tinysrgb&crop=">
+        <img data-src="https://images.unsplash.com/photo-1473216635433-38f7100ae658?dpr=2&auto=compress,format&fit=crop&w=991&h=641&q=80&cs=tinysrgb&crop=" alt="">
+      </div>
+    </div>
+    <script type="text/javascript">
+      let imgs = document.querySelectorAll('img');
+      console.log(imgs.length);
+
+      imgs.forEach((item, index) => {
+        if(typeof item.dataset.src !== 'undefined'){
+          let newImg = document.createElement('img');
+
+          newImg.classList.add('new-img');
+          newImg.onload = function() {
+            item.replaceWith(newImg);
+          }
+          newImg.src = item.dataset.src;
+        }
+      });
+    </script>
+  </body>
+</html>
