@@ -1,0 +1,9 @@
+.box{
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 100px;
+  height: 100px;
+  border: 1px solid #000;
+  transform: translate(-50%, -50%);
+}
