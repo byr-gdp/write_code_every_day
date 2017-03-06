@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>load image in need</title>
+    <!-- 按需加载更多图片 -->
+    <!-- 滚动到底部触发响应加载更多图片方法 -->
+    <!-- 不考虑延迟加载图片 -->
+    <style media="screen">
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      .image-wrapper{
+        max-width: 640px;
+        margin: 0 auto;
+      }
+
+      img{
+        width: 100%;
+        margin-bottom: 30px;
+        animation: show 1s ease-in;
+      }
+
+      @keyframes show {
+        from{ opacity: 0; }
+        to{ opacity: 1; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="image-wrapper">
+
+    </div>
+  </body>
+  <script type="text/javascript">
+    let isLoading = false;
+    function loadImages(){
+      isLoading = true;
+      let imageWrapper = document.querySelector('.image-wrapper');
+      let idx = 0;
+
+      // 耗时操作，这种方法会阻塞，导致 window.onscroll 不会触发
+      // let start = new Date();
+      // while(new Date () - start <= 1000){};
+      setTimeout(() => {
+        for(let i = 0; i < 8; i++){
+          let image = new Image();
+          image.src = `${i + 1}.jpg`;
+          imageWrapper.appendChild(image);
+        }
+        // 载入结束
+        isLoading = false;
+      }, 2000)
+    }
+
+    loadImages();
+
+    window.addEventListener('scroll', function(){
+
+      // document.body.scrollHeight 通常大于 document.body.offsetHeight 和 document.body.clientHeight，后两者相等。
+      console.log('scroll');
+
+      if(window.innerHeight + document.body.scrollTop >= document.body.scrollHeight){
+        // 若 loadImages 是一个耗时操作，不应该在一个 loadImages 未结束时仍触发该函数。
+        // 比如和分页有关的 feed 流，若连续触发两次，分别加载第二页和第三页内容，若第二次请求先返回了，就会造成时间线混乱的现象。
+        if(!isLoading){
+          loadImages();
+          console.log('loading');
+        }else{
+          console.log('waiting');
+        }
+      }
+    });
+
+  </script>
+</html>
