@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>throttle</title>
+    <!-- 验证 throttle -->
+    <!-- 周期性的执行回调函数，即每隔一段时间执行一次 -->
+    <!-- 如果将水龙头拧紧直到水是以水滴的形式流出，那你会发现每隔一段时间，就会有一滴水流出。 -->
+  </head>
+  <body>
+    <script type="text/javascript">
+      /**
+       * @NOTE: fn 仅考虑简单函数，尚未对 ctx，arguments 处理
+       * @param {Function} fn 回调函数
+       * @param {Number} delay 延时时间，单位毫秒
+       */
+      function throttle(fn, delay){
+        let startTime = new Date();
+        let timeout = null;
+
+        return function(){
+          console.log('call func');
+
+          let now = new Date();
+          clearTimeout(timeout);
+
+          if(now - startTime >= delay){
+            fn();
+            startTime = now;
+          }else{
+            // 至少保证能调用一次
+            timeout = setTimeout(fn, delay);
+          }
+        }
+      }
+
+      function log(){
+        console.log('resize happended');
+      }
+
+      let throttle_log = throttle(log, 3000);
+
+      window.addEventListener('resize', throttle_log);
+    </script>
+  </body>
+</html>

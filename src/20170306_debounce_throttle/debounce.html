@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>debounce</title>
+    <!-- 验证 debounce -->
+    <!-- 当指定动作发生一定时间后，才执行回调，在这段时间中，调用此动作会重新计时 -->
+    <!-- 如果用手指一直按住一个弹簧，它将不会弹起直到你松手为止。 -->
+  </head>
+  <body>
+    <script type="text/javascript">
+      /**
+       * @NOTE: fn 仅考虑简单函数，尚未对 ctx，arguments 处理
+       * @param {Function} fn 回调函数
+       * @param {Number} delay 延时时间，单位毫秒
+       */
+      function debounce(fn, delay){
+        let timeout = null;
+
+        return function(){
+          console.log('call func');
+          clearTimeout(timeout);
+          timeout = setTimeout(fn, delay);
+        }
+      }
+
+      function log(){
+        console.log('resize happened');
+      }
+
+      let debounce_log = debounce(log, 3000);
+
+      window.addEventListener('resize', debounce_log);
+    </script>
+  </body>
+</html>
