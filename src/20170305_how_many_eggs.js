@@ -33,7 +33,7 @@ var ret = {};
 while(true){
   ret = verify(total);
 
-  if(cnt === 3){
+  if(cnt === 2){
     console.log('result:' + total);
     return total;
   }
