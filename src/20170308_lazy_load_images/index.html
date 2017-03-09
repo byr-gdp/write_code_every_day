@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>lazy load images</title>
+    <!-- 懒加载图片 -->
+    <!-- 关于 dom 元素各种高度的总结 -->
+    <style media="screen">
+      .image-wrapper{
+        max-width: 640px;
+        margin: 0 auto;
+      }
+
+      img{
+        width: 100%;
+        margin-bottom: 30px;
+        animation: show 1s ease-in;
+      }
+
+      @keyframes show {
+        from{ opacity: 0; }
+        to{ opacity: 1; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="image-wrapper">
+      <img src="./default.png" data-src="1.jpg" alt="">
+      <img src="./default.png" data-src="2.jpg" alt="">
+      <img src="./default.png" data-src="3.jpg" alt="">
+      <img src="./default.png" data-src="4.jpg" alt="">
+      <img src="./default.png" data-src="5.jpg" alt="">
+      <img src="./default.png" data-src="6.jpg" alt="">
+      <img src="./default.png" data-src="7.jpg" alt="">
+      <img src="./default.png" data-src="8.jpg" alt="">
+    </div>
+    <script type="text/javascript">
+    let imgs = document.querySelectorAll('img');
+
+    window.addEventListener('scroll', () => {
+      for(let i = 0; i < imgs.length; i++){
+        // 重点判断逻辑是图片距离页面顶端的距离小于页面可是窗口高度加上已滚动距离。即图片出现在可视窗口内
+        if(imgs[i].offsetTop < window.innerHeight + document.body.scrollTop){
+          if(imgs[i].src.indexOf('default.png') > -1){
+            // 此处延时是为了便于观察效果
+            setTimeout(function(){
+              imgs[i].src = imgs[i].dataset.src;
+            }, 1000);
+          }
+        }
+      }
+    });
+    </script>
+  </body>
+</html>
