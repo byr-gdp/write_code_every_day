@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>easy two way data binding</title>
+    <!--
+    数据绑定简单实现
+
+    - 一个数据绑定一个 DOM，数据修改后同步体现在 DOM。
+    - 一个数据绑定多个 DOM，解决 Object.defineProperty 覆盖之前设定问题。
+    - 一个数据绑定多个 DOM，修改其中一个 DOM 同时将变化体现到其余 DOM。(lazy)
+    -->
+  </head>
+  <body>
+    <p id="p"></p>
+    <input type="text" id="input">
+    <textarea id="textarea"></textarea>
+    <script src="./binding.js"></script>
+    <script type="text/javascript">
+      let $ = (selector) => {
+        return document.querySelector(selector);
+      };
+      let obj = {}
+
+      let p = $('#p');
+      let input = $('#input');
+      let textarea = $('#textarea');
+
+      bindModal(obj, 'data', p);
+      bindModal(obj, 'data', input);
+      bindModal(obj, 'data', textarea);
+
+    </script>
+  </body>
+</html>
