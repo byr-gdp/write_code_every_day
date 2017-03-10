@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>es5 constructor html</title>
+    <!-- ES5 继承实现 -->
+    <!-- 镜像代码 20170310_es6_class.html -->
+  </head>
+  <body>
+    <script type="text/javascript">
+    'use strict';
+
+    let Animal = function Animal(name) {
+      this.name = name;
+    }
+
+    Animal.prototype.spark = () => {
+      console.log(`${this.name} makes a noise`);
+    }
+
+    let animal = new Animal('animal');
+    animal.spark();
+
+    let Dog = function Dog(name, color) {
+      Animal.call(this, name);
+      this.color = color;
+    }
+
+    // 原型继承
+    // Dog 原型对象是 Animal 实例
+    // Dog.prototype = new Animal;
+    Dog.prototype = Object.create(Animal.prototype); // 创造一个指定原型的对象
+
+    Dog.prototype.intro = function () {
+      console.log(`a ${this.color} ${this.name}`);
+    }
+    // Dog.prototype.spark = function() {
+    //   console.log(`${this.name} barks`);
+    // }
+
+
+    let dog = new Dog('dog', 'black');
+    dog.intro();
+    dog.spark();
+
+    </script>
+  </body>
+</html>
