@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>DOM Event Demo</title>
+    <!--
+    参考 [Event Reference](https://developer.mozilla.org/en-US/docs/Web/Events)
+    这里仅对 DOM 相关的部分 Event 进行测试，如下：
+    - DOMContentLoaded：当 DOM 载入完毕
+    - load：当 DOM 及依赖的资源（包含层叠样式表、脚本、图片等资源）加载完毕
+    - beforeunload：当页面即将 unload 时出发，若 event.returnValue 被赋值，将弹出对话框确认是否离开页面（如 Gmail 关闭时）
+    - unload：暂无验证
+    -->
+  </head>
+  <body>
+    <p>Open console to see the result.</p>
+    <script type="text/javascript">
+      console.time('script');
+      window.addEventListener('load', () => {
+        console.time('load');
+        console.log('load');
+        console.timeEnd('load');
+        console.timeEnd('script');
+      });
+
+      window.addEventListener('DOMContentLoaded', () => {
+        console.time('DOMContentLoaded');
+        console.log('DOMContentLoaded');
+        console.timeEnd('DOMContentLoaded');
+        console.timeEnd('script');
+      });
+
+      window.addEventListener("beforeunload", (event) => {
+        // event.returnValue = "\o/";
+        console.log('beforeunload');
+        event.returnValue = '';
+      });
+
+      // window.addEventListener('unload', (event) => {
+      //   console.log('unload');
+      // });
+
+
+    </script>
+  </body>
+</html>
