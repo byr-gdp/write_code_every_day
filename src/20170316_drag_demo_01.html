@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>drag demo</title>
+    <!-- 简单拖拽：两个盒子子元素可以互相拖拽 -->
+    <!-- 参考：https://github.com/webplus/blog/issues/5 -->
+    <style media="screen">
+      .rubbish-box,
+      .box {
+        width: 100px;
+        height: 100px;
+        border: 1px solid #000;
+        transition: all .3s ease-in-out;
+        float: left;
+        margin-right: 100px;
+      }
+
+      .rubbish-item {
+        list-style: none;
+        float: left;
+        width: 50px;
+        height: 50px;
+        background-color: #aaa;
+        box-sizing: border-box;
+        border: 1px solid #333;
+      }
+
+      .rubbish-box.drag-over,
+      .box.drag-over {
+        transform: scale(0.8);
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="rubbish-box">
+      <li draggable="true" class="rubbish-item" id="0">0</li>
+      <li draggable="true" class="rubbish-item" id="1">1</li>
+      <li draggable="true" class="rubbish-item" id="2">2</li>
+      <li draggable="true" class="rubbish-item" id="3">3</li>
+    </div>
+    <div class="box"></div>
+    <script type="text/javascript">
+      (function () {
+        let demo = {
+          init: () => {
+            let rubbishBox = document.querySelector('.rubbish-box');
+            let box = document.querySelector('.box');
+
+            // 从 rubbish-box 到 box
+            rubbishBox.addEventListener('dragstart', demo.onDragStart);
+
+            box.addEventListener('dragenter', demo.onDragEnter);
+
+            box.addEventListener('dragleave', demo.onDragLeave);
+
+            box.addEventListener('dragover', demo.onDragOver);
+
+            box.addEventListener('drop', demo.onDrop);
+
+            // 从 box 到 rubbish-box
+            box.addEventListener('dragstart', demo.onDragStart);
+
+            rubbishBox.addEventListener('dragenter', demo.onDragEnter);
+
+            rubbishBox.addEventListener('dragleave', demo.onDragLeave);
+
+            rubbishBox.addEventListener('dragover', demo.onDragOver);
+
+            rubbishBox.addEventListener('drop', demo.onDrop);
+          },
+
+          onDragStart: (e) => {
+            if (e.target.classList.contains('rubbish-item')) {
+              e.dataTransfer.setData('text/plain', e.target.getAttribute('id'))
+            }
+          },
+
+          onDragEnter: (e) => {
+            if (!e.target.classList.contains('drag-over')) {
+              e.target.classList.add('drag-over');
+            }
+          },
+
+          onDragOver: (e) => {
+            e.preventDefault();
+          },
+
+          onDragLeave: (e) => {
+            if (e.target.classList.contains('drag-over')) {
+              e.target.classList.remove('drag-over');
+            }
+          },
+
+          onDrop: (e) => {
+            const id = e.dataTransfer.getData('text/plain');
+
+            e.target.appendChild(document.getElementById(id));
+            if (e.target.classList.contains('drag-over')) {
+              e.target.classList.remove('drag-over');
+            }
+          }
+        };
+
+        demo.init();
+      })();
+    </script>
+  </body>
+</html>
