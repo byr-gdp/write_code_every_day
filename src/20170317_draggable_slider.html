@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>draggable slider</title>
+    <!-- input[type=range] 另一种实现 -->
+    <style media="screen">
+      body {
+        margin: 0;
+      }
+
+      .slider-default {
+        width: 120px;
+        height: 8px;
+        position: absolute;
+        background-color: #3cf59b;
+        left: 50%;
+        top: 50%;
+        margin-left: -60px;
+        margin-top: -4px;
+        /*无法使用 transform，会影响之后的计算*/
+        /*transform: translate(-50%, -50%);*/
+      }
+
+      .slider-overlay {
+        width: 0;
+        height: 8px;
+        background-color: #e43;
+      }
+
+      .slider-point {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #000;
+        position: absolute;
+        left: 0;
+        top: 0;
+        cursor: pointer;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <div class='slider-default'>
+      <div class='slider-overlay'></div>
+      <div class='slider-point'></div>
+    </div>
+    <script type="text/javascript">
+      let point = document.querySelector('.slider-point');
+      let overlay = document.querySelector('.slider-overlay');
+      let dft = document.querySelector('.slider-default');
+
+      // mousedown window 绑定 mousemove
+      // mouseup window 取消绑定 mousemove
+
+      // // 函数节流，测试时避免频繁触发 mousemove
+      // let throttle = (fn, delay) => {
+      //   let start = new Date();
+      //
+      //   return (e) => {
+      //     if (new Date() - start > delay) {
+      //       fn(e);
+      //       start = new Date();
+      //     }
+      //   }
+      // }
+
+      const dftBegin = dft.offsetLeft;
+      const dftWidth = dft.offsetWidth;
+      const dftEnd = dftBegin + dftWidth;
+      const halfPointWidth = point.clientWidth / 2;
+
+      const onMove = (e) => {
+        if (e.clientX < dftBegin) {
+          overlay.style.width = 0;
+          point.style.left = (0 - halfPointWidth) + 'px';
+        } else if (e.clientX > dftEnd) {
+          overlay.style.width = dftWidth + 'px';
+          point.style.left = (dftWidth - halfPointWidth) + 'px';
+        } else {
+          overlay.style.width = (e.clientX - dftBegin) + 'px';
+          point.style.left = (e.clientX - dftBegin - halfPointWidth) + 'px';
+        }
+      }
+
+      // const throttleMove = throttle(onMove, 50);
+
+      const onDown = (e) => {
+        if (e.type === 'mousedown' && (e.target.classList.contains('slider-default') || e.target.classList.contains('slider-overlay') || e.target.classList.contains('slider-point'))) {
+          onMove(e);
+          window.addEventListener('mousemove', onMove);
+        }
+      }
+
+      window.addEventListener('mousedown', onDown);
+
+      window.addEventListener('mouseup', (e) => {
+        window.removeEventListener('mousemove', onMove);
+      });
+    </script>
+  </body>
+</html>
