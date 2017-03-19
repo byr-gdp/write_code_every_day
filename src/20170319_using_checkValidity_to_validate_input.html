@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>checkVality</title>
+    <!--
+    对于表单验证，即对 input value 进行验证，可以直接调用其 checkValidity 方法，而不用再通过获取 input value，再用正则匹配的方式。
+    对于不同 type，有的本身会具有一些限制规则，比如 url、email。
+    对于其他的 type，可以通过一些属性来增加限制，比如 pattern、min、max、step 等，根据对应的 type 来选择。
+    详细资料可以参考：
+    https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/checkValidity
+    https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation
+    -->
+  </head>
+  <body>
+    <div class="check-item">
+      <label>type: text
+        <input type="text" id="text">
+      </label>
+      <span class="checkText">no result</span>
+    </div>
+    <div class="check-item">
+      <label>type: email
+        <input type="email" id="email">
+      </label>
+      <span class="checkEmail">no result</span>
+    </div>
+    <div class="check-item">
+      <label>type: number，min: 0, max: 10
+        <input type="number" id="number" max="10" min="1">
+      </label>
+      <span class="checkNumber">no result</span>
+    </div>
+    <script type="text/javascript">
+      const text = document.querySelector('#text');
+      const email = document.querySelector('#email');
+      const number = document.querySelector('#number');
+      const onInput = function onInput(e) {
+        e.target.parentElement.nextElementSibling.innerText = this.checkValidity();
+      }
+
+      text.addEventListener('input', onInput);
+      email.addEventListener('input', onInput);
+      number.addEventListener('input', onInput);
+    </script>
+  </body>
+</html>
